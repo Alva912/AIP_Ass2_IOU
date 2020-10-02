@@ -1,43 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="UTS 2020 Spring AIP Assignment 2 IOU Web App">
+  <meta name="keywords" content="IOU,Favor,Relationship">
+  <meta name="author" content="JiahuaLi">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>IOU Web App</title>
+</head>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<body class="pt-5">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <!-- ANCHOR Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container justify-content-center">
+        <!-- NOTE 放一些固定的东西 -->
+        <a href="javascript:void(0);" class="nav-brand text-light">
+          <!-- TODO logo img/svg -->IOU Web App</a>
+      </div>
+    </nav>
+  </header>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  <!-- ANCHOR Main Body -->
+  <main class="container-fluid">
+    <div class="row">
+      <!-- NOTE 放一些固定的东西 -->
+      <nav id="left-col" class="col-3 d-md-block sidebar collapse">
+        <div id="user-dashboard" class="sidebar-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="javascript:void(0);" class="nav-link text-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-home">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Username
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0);" class="nav-link text-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-users">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Favor - U owe to Others
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0);" class="nav-link text-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-users">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Favor - Others owe U
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0);" class="nav-link text-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-layers">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                My Quests
+              </a>
+            </li>
+          </ul>
+          <!-- TODO Needs render from js -->
+          <!-- <button type="button" class="btn btn-light">Username</button>
+          <button type="button" class="btn btn-light">Favor - U owe to Others</button>
+          <button type="button" class="btn btn-light">Favor - Others owe U</button>
+          <button type="button" class="btn btn-light">My Quests</button> -->
+        </div>
+      </nav>
+      <div id="middle-col" class="col-6 bg-light">
+        <!-- NOTE 放一些固定的东西 -->
+        <div id="create-post" class="card my-3">
+          <form action="" id="post-form" class="card-body d-flex flex-column">
+            <input type="text" name="" id="" class="" style="height: 4rem;" placeholder="Description">
+            <div class="favor-option input-group input-group-sm">
+              <select name="quest-type" id="" class="custom-select">
+                <option selected disabled>Quest Type</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="snacking">Snacking</option>
+              </select>
+              <select name="reward-type" id="" class="custom-select">
+                <option selected disabled>Reward Type</option>
+                <option value="coffee">Coffee</option>
+                <option value="chocolate">Chocolate</option>
+                <option value="mint">Mint</option>
+                <option value="pizza">Pizza</option>
+                <option value="cupcake">Cupcake</option>
+              </select>
+              <select name="reward-num" id="" class="custom-select">
+                <option selected disabled>Quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary">Post a request</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- TODO Needs render from js -->
+        <div id="display-post" class="">
+          <nav>
+            <div id="filters" class="nav nav-tabs" role="tablist">
+              <a class="nav-link text-muted" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true">Requests</a>
+              <a class="nav-link text-muted active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                role="tab" aria-controls="nav-profile" aria-selected="false">Related Quests</a>
+              <a class="nav-link text-muted" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                aria-controls="nav-contact" aria-selected="false">Accepted Quests</a>
+            </div>
+          </nav>
+          <div id="filtered-post" class="tab-content">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="media text-muted pt-3">
+                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#fffff"></rect>
+                  <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                </svg>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@Username<small> 3 days ago</small></strong>
+                  Please clean the fridge on the 2nd floor.
+                </p>
+              </div>
+              <div class="media text-muted pt-3">
+                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#fffff"></rect>
+                  <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                </svg>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@Username<small> 3 days ago</small></strong>
+                  Please clean the fridge on the 2nd floor.
+                </p>
+              </div>
+              <div class="media text-muted pt-3">
+                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#fffff"></rect>
+                  <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                </svg>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@Username<small> 3 days ago</small></strong>
+                  Please clean the fridge on the 2nd floor.
+                </p>
+              </div>
+              <div class="media text-muted pt-3">
+                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#fffff"></rect>
+                  <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                </svg>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@Username<small> 3 days ago</small></strong>
+                  Please clean the fridge on the 2nd floor.
+                </p>
+              </div>
+              <div class="media text-muted pt-3">
+                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#fffff"></rect>
+                  <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                </svg>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@Username<small> 3 days ago</small></strong>
+                  Please clean the fridge on the 2nd floor.
+                </p>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">2</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div>
+          </div>
+        </div>
+      </div>
+      <div id="right-col" class="col-3">
+        <!-- TODO Needs render from js -->
+        <div id="leader-board" class="card col-8">
+          <div class="card-body">
+            <h6 class="card-title">Leaderboard</h5>
+              <ol class="card-text">
+                <li class="media text-muted pt-1">
+                  <svg class="bd-placeholder-img mr-2 rounded" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#fffff"></rect>
+                    <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                  </svg>
+                  <p class="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">
+                    <small class="d-block text-gray-dark">@Username</small>
+                  </p>
+                </li>
+                <li class="media text-muted pt-1">
+                  <svg class="bd-placeholder-img mr-2 rounded" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#fffff"></rect>
+                    <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                  </svg>
+                  <p class="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">
+                    <small class="d-block text-gray-dark">@Username</small>
+                  </p>
+                </li>
+                <li class="media text-muted pt-1">
+                  <svg class="bd-placeholder-img mr-2 rounded" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#fffff"></rect>
+                    <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                  </svg>
+                  <p class="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">
+                    <small class="d-block text-gray-dark">@Username</small>
+                  </p>
+                </li>
+                <li class="media text-muted pt-1">
+                  <svg class="bd-placeholder-img mr-2 rounded" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#fffff"></rect>
+                    <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                  </svg>
+                  <p class="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">
+                    <small class="d-block text-gray-dark">@Username</small>
+                  </p>
+                </li>
+                <li class="media text-muted pt-1">
+                  <svg class="bd-placeholder-img mr-2 rounded" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#fffff"></rect>
+                    <text x="50%" y="50%" fill="#fffff" dy=".3em">32x32</text>
+                  </svg>
+                  <p class="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">
+                    <small class="d-block text-gray-dark">@Username</small>
+                  </p>
+                </li>
+              </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ANCHOR TestAPI -->
+  <div id="testAPI"></div>
+
+  <!-- ANCHOR Libraries -->
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</body>
+
 </html>
