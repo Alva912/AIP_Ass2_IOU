@@ -1,55 +1,60 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
+import Counter from "./Components/TestAPI.js";
 
-    // NOTE must have, don't know why
-    this.handleClick = this.handleClick.bind(this);
-  }
+import WelcomeBanner from "./Components/WelcomeBanner.js";
+import UserMenu from "./Components/UserMenu.js";
+import CreatePost from "./Components/CreatePost.js";
+import DisplayPosts from "./Components/DisplayPosts.js";
+import Leaderboard from "./Components/Leaderboard.js";
 
-  // ANCHOR initial GET request in the lifecycle, this will set init count to 10
-  async componentDidMount() {
-    let response = await fetch("/api/count");
-    let json = await response.json();
-    this.setState({ count: json.count });
-  }
-
-  // ANCHOR increase count using async/await
-  async handleClick() {
-    let data = {
-      current: this.state.count,
-      increment: 1,
-    };
-    let response = await fetch("/api/increment", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Origin": "*",
-      },
-      body: JSON.stringify(data),
-    });
-    let as_json = await response.json();
-    this.setState({ count: as_json.count });
-  }
-
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          userLogin: false,
+        };
+    }
   render() {
     return (
       <div>
-        <h3 className="text-primary">API is woring</h3>
-        <p>
-          Current count:
-          <span>{this.state.count}</span>
-        </p>
-        <button onClick={this.handleClick}>+1</button>
+        <nav className="navbar nax`vbar-expand-md navbar-dark fixed-top bg-dark">
+          <div className="container justify-content-center">
+            <div
+              className="nav-item spinner-border spinner-border-sm text-light mx-3"
+              role="status"
+            >
+              <span className="sr-only">Loading...</span>
+            </div>
+            <a href="javascript:void(0);" className="nav-brand text-light">
+              IOU Web App
+            </a>
+            <div
+              className="nav-item spinner-border spinner-border-sm text-light mx-3"
+              role="status"
+            >
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        </nav>
+        <WelcomeBanner></WelcomeBanner>
+        <div className="row">
+          <div id="left-col" className="col-3 d-md-block sidebar collapse">
+            <UserMenu isDisplay={this.state.userLogin}></UserMenu>
+          </div>
+          <div id="middle-col" className="col-6 bg-light">
+            <CreatePost isDisplay={this.state.userLogin}></CreatePost>
+            <DisplayPosts></DisplayPosts>
+          </div>
+          <div id="right-col" className="col-3">
+            <Leaderboard></Leaderboard>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
+ReactDOM.render(<App />, document.getElementById("root"));
 ReactDOM.render(<Counter />, document.getElementById("testAPI"));
