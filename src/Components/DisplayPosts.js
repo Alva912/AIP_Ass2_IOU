@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Navbar, NavbarBrand, Form, Input, Media } from "reactstrap";
 
 class Post extends Component {
   render() {
     return (
-      <div className="media text-muted pt-3">
+      <Media className="text-muted pt-3">
         <svg
           className="bd-placeholder-img mr-2 rounded"
           width="32"
@@ -20,13 +21,16 @@ class Post extends Component {
             32x32
           </text>
         </svg>
-        <p className="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <Media
+          body
+          className="pb-3 mb-0 small lh-125 border-bottom border-gray"
+        >
           <strong className="d-block text-gray-dark">
             @Username<small> 3 days ago</small>
           </strong>
           Please clean the fridge on the 2nd floor.
-        </p>
-      </div>
+        </Media>
+      </Media>
     );
   }
 }
@@ -35,17 +39,17 @@ class DisplayPosts extends Component {
   render() {
     return (
       <div id="display-post">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light rounded">
-          <a className="navbar-brand mr-auto">Public Posts</a>
-          <form className="form-inline my-2 my-md-0">
-            <input
+        <Navbar expand="lg" color="light" light className="rounded">
+          <NavbarBrand className="mr-auto">Public Posts</NavbarBrand>
+          <Form inline className="my-2 my-md-0">
+            <Input
               className="form-control"
-              type="text"
+              type="search"
               placeholder="Search"
               aria-label="Search"
-            ></input>
-          </form>
-        </nav>
+            ></Input>
+          </Form>
+        </Navbar>
         <Post></Post>
         <Post></Post>
         <Post></Post>

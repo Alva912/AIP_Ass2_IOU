@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Nav, NavItem, NavLink } from "reactstrap";
 
 class MenuItem extends Component {
   render() {
     let itemName = this.props.itemName;
     return (
-      <li className="nav-item">
-        <a href="javascript:void(0);" className="nav-link text-dark">
+      <NavItem>
+        <NavLink href="/" className="text-dark">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -22,8 +23,8 @@ class MenuItem extends Component {
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
           {itemName}
-        </a>
-      </li>
+        </NavLink>
+      </NavItem>
     );
   }
 }
@@ -35,12 +36,12 @@ class UserMenu extends Component {
     }
     return (
       <div id="user-menu" className="sidebar-sticky pt-3" display={isDisplay}>
-        <ul className="nav flex-column">
+        <Nav className="flex-column">
           <MenuItem itemName="Username"></MenuItem>
           <MenuItem itemName="Favor - U owe to Others"></MenuItem>
           <MenuItem itemName="Favor - Others owe U"></MenuItem>
           <MenuItem itemName="My Quests"></MenuItem>
-        </ul>
+        </Nav>
       </div>
     );
   }

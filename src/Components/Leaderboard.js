@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { CardBody, CardTitle, Media } from "reactstrap";
 
 class LeadUser extends Component {
   render() {
     return (
-      <li className="media text-muted pt-1">
+      <Media className="text-muted pt-1">
         <svg
           className="bd-placeholder-img mr-2 rounded"
           width="16"
@@ -20,27 +21,28 @@ class LeadUser extends Component {
             32x32
           </text>
         </svg>
-        <p className="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">
+        <Media
+          body
+          className="pb-1 mb-0 small lh-125 border-bottom border-gray"
+        >
           <small className="d-block text-gray-dark">@Username</small>
-        </p>
-      </li>
+        </Media>
+      </Media>
     );
   }
 }
 class Leaderboard extends Component {
   render() {
     return (
-      <div id="leaderboard" className="card-body">
-        <h6 className="card-title">Leaderboard</h6>
-        <ol className="card-text">
-          <LeadUser></LeadUser>
-          <LeadUser></LeadUser>
-          <LeadUser></LeadUser>
-          <LeadUser></LeadUser>
-          <LeadUser></LeadUser>
-          <LeadUser></LeadUser>
-        </ol>
-      </div>
+      <CardBody id="leaderboard">
+        <CardTitle>Leaderboard</CardTitle>
+        <LeadUser></LeadUser>
+        <LeadUser></LeadUser>
+        <LeadUser></LeadUser>
+        <LeadUser></LeadUser>
+        <LeadUser></LeadUser>
+        <LeadUser></LeadUser>
+      </CardBody>
     );
   }
 }
