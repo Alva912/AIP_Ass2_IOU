@@ -37,6 +37,10 @@ class Post extends Component {
 
 class DisplayPosts extends Component {
   render() {
+    let isDisplay = this.props.isDisplay;
+    if (!isDisplay) {
+      return null;
+    }
     return (
       <div id="display-post">
         <Navbar expand="lg" color="light" light className="rounded">
