@@ -18,10 +18,24 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisitor: true,
-      isSigningIn: false,
-      isLogin: false,
+      userStatus: {
+        isVisitor: true,
+        isSigningIn: false,
+        isSignedIn: false,
+      },
     };
+  }
+
+  onSigningIn() {
+    this.setState({
+      userStatus: { isVisitor: false, isSigningIn: true },
+    });
+  }
+
+  onSignedIn() {
+    this.setState({
+      userStatus: { isSigningIn: false, isSignedIn: true },
+    });
   }
 
   render() {
@@ -39,28 +53,30 @@ class App extends React.Component {
           </NavbarBrand>
         </Navbar>
         <WelcomeBanner
-          isDisplay={this.state.isVisitor}
-          onSigningIn={() =>
-            this.setState({ isVisitor: false, isSigningIn: true })
-          }
+          isDisplay={this.state.userStatus.isVisitor}
+          onSigningIn={() => this.onSigningIn()}
         ></WelcomeBanner>
         <Row className="justify-content-between pt-5">
           <Col id="left-col" xs="3">
-            <UserMenu isDisplay={this.state.isLogin}></UserMenu>
+            <UserMenu isDisplay={this.state.userStatus.isSignedIn}></UserMenu>
           </Col>
           <Col id="middle-col" xs="auto">
             {" "}
             <UserSignIn
-              isDisplay={this.state.isSigningIn}
-              onSignedIn={() =>
-                this.setState({ isSigningIn: false, isLogin: true })
-              }
+              isDisplay={this.state.userStatus.isSigningIn}
+              onSignedIn={() => this.onSignedIn()}
             ></UserSignIn>
-            <CreatePost isDisplay={this.state.isLogin}></CreatePost>
-            <DisplayPosts isDisplay={!this.state.isSigningIn}></DisplayPosts>
+            <CreatePost
+              isDisplay={this.state.userStatus.isSignedIn}
+            ></CreatePost>
+            <DisplayPosts
+              isDisplay={!this.state.userStatus.isSigningIn}
+            ></DisplayPosts>
           </Col>
           <Col id="right-col" xs="3">
-            <Leaderboard isDisplay={!this.state.isSigningIn}></Leaderboard>
+            <Leaderboard
+              isDisplay={!this.state.userStatus.isSigningIn}
+            ></Leaderboard>
           </Col>
         </Row>
       </div>
