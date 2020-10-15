@@ -6,9 +6,7 @@ class UserSignUp extends Component {
     super(props);
     this.state = {
       userInput: {
-        userName: "",
-        firstName: "",
-        lastName: "",
+        username: "",
         email: "",
         password: "",
       },
@@ -33,9 +31,9 @@ class UserSignUp extends Component {
     this.setState({ user: as_json.user });
   }
 
-  handleChange(event, propName) {
+  handleChange(event, property) {
     let inputs = this.state.userInput;
-    inputs[propName] = event.target.value;
+    inputs[property] = event.target.value;
     this.setState({ userInput: inputs });
   }
 
@@ -48,43 +46,19 @@ class UserSignUp extends Component {
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
-        <p>{this.state.userInput.userName}</p>
-        <p>{this.state.userInput.lastName}</p>
-        <p>{this.state.userInput.firstName}</p>
+        <p>{this.state.userInput.username}</p>
         <p>{this.state.userInput.email}</p>
         <p>{this.state.userInput.password}</p>
         <FormGroup>
-          <Label for="userName">User Name</Label>
+          <Label for="username">User Name</Label>
           <Input
             type="text"
-            id="userName"
+            id="username"
             className="form-control"
             placeholder="User Name"
             required
             autoFocus
-            onChange={(event) => this.handleChange(event, "userName")}
-          ></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="firstName">First Name</Label>
-          <Input
-            type="text"
-            id="firstName"
-            className="form-control"
-            placeholder="First Name"
-            required
-            onChange={(event) => this.handleChange(event, "firstName")}
-          ></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="lastName">Last Name</Label>
-          <Input
-            type="text"
-            id="lastName"
-            className="form-control"
-            placeholder="Last Name"
-            required
-            onChange={(event) => this.handleChange(event, "lastName")}
+            onChange={(event) => this.handleChange(event, "username")}
           ></Input>
         </FormGroup>
         <FormGroup>

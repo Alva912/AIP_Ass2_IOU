@@ -31,7 +31,7 @@ router.post("/songs", songs.createSong);
 // !SECTION
 
 // TODO Write our codes here
-router.get("/login", user.show_login);
-router.get("/signup", user.show_signup);
+router.get("/login", user.getUserById);
+router.get("/signup", user.createUser);
 
 module.exports = router;
