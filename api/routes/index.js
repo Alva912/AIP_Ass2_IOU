@@ -2,7 +2,6 @@ const { Router } = require("express");
 const artists = require("../controllers/artists");
 const genres = require("../controllers/genres");
 const songs = require("../controllers/songs");
-const testAPI = require("../controllers/testAPI");
 const router = Router();
 
 router.get("/", (req, res) => res.send("Server running!"));
@@ -24,10 +23,5 @@ router.get("/songs/:id", songs.getSongById);
 router.patch("/songs/:id", songs.updateSong);
 router.delete("/songs/:id", songs.deleteSong);
 router.post("/songs", songs.createSong);
-
-router.get("/api/count", testAPI.get_testAPI);
-router.post("/api/increment", testAPI.post_testAPI);
-router.post("/api/submit", testAPI.post_testSubmit);
-router.get("/api/show", testAPI.show_testSubmit);
 
 module.exports = router;
