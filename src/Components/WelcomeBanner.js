@@ -14,12 +14,16 @@ class WelcomeBanner extends Component {
           <Button
             color="primary"
             className="my-2"
-            onClick={() => this.props.onSigningIn()}
+            onClick={() => this.props.onSigningUp()}
           >
-            Sign in
+            Sign Up
           </Button>
-          <Button color="secondary" className="my-2">
-            Log in
+          <Button
+            color="secondary"
+            className="my-2"
+            onClick={() => this.props.onLoggingIn()}
+          >
+            Log In
           </Button>
         </p>
       </Jumbotron>

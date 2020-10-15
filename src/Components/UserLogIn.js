@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
-class UserSignIn extends Component {
+class UserLogIn extends Component {
   render() {
     let isDisplay = this.props.isDisplay;
     if (!isDisplay) {
@@ -9,7 +9,7 @@ class UserSignIn extends Component {
     }
     return (
       <Form className="mt-5">
-        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Please Log In</h1>
         <FormGroup>
           <Label for="inputEmail" className="sr-only">
             Email address
@@ -40,14 +40,14 @@ class UserSignIn extends Component {
           size="lg"
           block
           onClick={() => {
-            this.props.onSignedIn();
+            this.props.onLoggedIn();
             isDisplay = !isDisplay;
           }}
         >
-          Sign in
+          Log In
         </Button>
       </Form>
     );
   }
 }
-export default UserSignIn;
+export default UserLogIn;

@@ -4,126 +4,100 @@ import {
   Col,
   Navbar,
   NavbarBrand,
-  Nav,
-  NavItem,
-  Button,
+  // Nav,
+  // NavItem,
+  // Button,
 } from "reactstrap";
 
 // NOTE Import custom components
 import WelcomeBanner from "./Components/WelcomeBanner.js";
 import UserMenu from "./Components/UserMenu.js";
-import UserSignIn from "./Components/UserSignIn.js";
+import UserLogIn from "./Components/UserLogIn.js";
+import UserSignUp from "./Components/UserSignUp.js";
 import CreatePost from "./Components/CreatePost.js";
 import DisplayPosts from "./Components/DisplayPosts.js";
 import Leaderboard from "./Components/Leaderboard.js";
 
 const App = (props) => {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //     // NOTE Switch between homepage and sign-in page by changing user status
-  //       userStatus: {
-  //         isVisitor: true,
-  //         isSigningIn: false,
-  //         isSignedIn: false,
-  //       },
-  //     };
-  //   }
   const [isVisitor, setIsVisitor] = useState(true);
-  const [isSigningIn, setIsSigningIn] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const onSigningIn = () => {
-    // this.setState({
-    //   userStatus: { isVisitor: false, isSigningIn: true },
-    // });
-    setIsVisitor(!isVisitor);
-    setIsSigningIn(!isSigningIn);
+  const onSigningUp = () => {
+    setIsVisitor(false);
+    setIsSigningUp(true);
+    setIsLoggingIn(false);
   };
 
-  const onSignedIn = () => {
-    // this.setState({
-    //   userStatus: { isSigningIn: false, isSignedIn: true },
-    // });
-    setIsSigningIn(!isSigningIn);
-    setIsSignedIn(!isSignedIn);
+  const onLoggingIn = () => {
+    setIsVisitor(false);
+    setIsSigningUp(false);
+    setIsLoggingIn(true);
   };
 
-  // render() {
+  const onLoggedIn = () => {
+    setIsSigningUp(false);
+    setIsLoggingIn(false);
+    setIsLoggedIn(true);
+  };
+
   return (
     <div>
       {/* NOTE Static navigation header */}
 
-      <Navbar
-        color="dark"
-        dark
-        expand="sm"
-        fixed="top"
-        // className="justify-content-center"
-      >
+      <Navbar color="dark" dark expand="sm" fixed="top">
         <NavbarBrand href="/" className="p-0">
           IOU Web App
         </NavbarBrand>
-        <Nav className="ml-auto p-0">
-          <NavItem>
-            <Button color="primary" size="sm" outline onClick={onSigningIn}>
-              Sign in
+        {/* <Nav className="ml-auto p-0">
+          <NavItem isDisplay={isVisitor | isLoggingIn}>
+            <Button color="primary" size="sm" outline onClick={onSigningUp}>
+              Sign Up
             </Button>
           </NavItem>
-          <NavItem>
-            <Button color="secondary" size="sm" outline>
-              Log in
+          <NavItem isDisplay={isVisitor | isSigningUp}>
+            <Button color="secondary" size="sm" outline onClick={onLoggingIn}>
+              Log In
             </Button>
           </NavItem>
-        </Nav>
+        </Nav> */}
       </Navbar>
 
       {/* NOTE Dynamic content */}
 
       <WelcomeBanner
-        // isDisplay={this.state.userStatus.isVisitor}
         isDisplay={isVisitor}
-        // onSigningIn={() => this.onSigningIn()}
-        onSigningIn={onSigningIn}
+        onLoggingIn={onLoggingIn}
+        onSigningUp={onSigningUp}
       ></WelcomeBanner>
 
       <Row className="justify-content-between">
         <Col id="left-col" xs="3">
-          <UserMenu
-            // isDisplay={this.state.userStatus.isSignedIn}
-            isDisplay={isSignedIn}
-          ></UserMenu>
+          <UserMenu isDisplay={isLoggedIn}></UserMenu>
         </Col>
 
         <Col id="middle-col" xs="auto">
           {" "}
-          <UserSignIn
-            // isDisplay={this.state.userStatus.isSigningIn}
-            isDisplay={isSigningIn}
-            // onSignedIn={() => this.onSignedIn()}
-            onSignedIn={onSignedIn}
-          ></UserSignIn>
-          <CreatePost
-            // isDisplay={this.state.userStatus.isSignedIn}
-            isDisplay={isSignedIn}
-          ></CreatePost>
+          <UserLogIn
+            isDisplay={!isLoggedIn && isLoggingIn}
+            onLoggedIn={onLoggedIn}
+          ></UserLogIn>
+          <UserSignUp
+            isDisplay={!isLoggedIn && isSigningUp}
+            onLoggedIn={onLoggedIn}
+          ></UserSignUp>
+          <CreatePost isDisplay={isLoggedIn}></CreatePost>
           {/* TODO Change according to user menu option selected */}
-          <DisplayPosts
-            // isDisplay={!this.state.userStatus.isSigningIn}
-            isDisplay={!isSigningIn}
-          ></DisplayPosts>
+          <DisplayPosts isDisplay={isVisitor || isLoggedIn}></DisplayPosts>
         </Col>
 
         <Col id="right-col" xs="3">
-          <Leaderboard
-            // isDisplay={!this.state.userStatus.isSigningIn}
-            isDisplay={!isSigningIn}
-          ></Leaderboard>
+          <Leaderboard isDisplay={isVisitor || isLoggedIn}></Leaderboard>
         </Col>
       </Row>
     </div>
   );
-  // }
 };
 
 export default App;
