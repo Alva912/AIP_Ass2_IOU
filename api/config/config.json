@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "aip-iou-dbuser",
+    "password": "13507912",
+    "database": "aip-iou-db",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port": 5432
+  },
+  "test": {
+    "database": "database_test",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "database_production",
+    "dialect": "postgres",
+    "dialectOptions":{
+      "ssl":{
+        "rejectUnauthorized":false,
+        "ssl":true
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ class WelcomeBanner extends Component {
       return null;
     }
     return (
-      <Jumbotron id="welcome-banner" fluid className="text-center">
+      <Jumbotron id="welcome-banner" fluid className="text-center pt-5">
         <h2>Welcome to IOU</h2>
         <p className="lead">
           <Button

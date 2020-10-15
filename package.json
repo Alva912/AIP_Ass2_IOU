@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:4000",
+  "proxy": "http://localhost:9000",
   "name": "ass2_iou",
   "version": "0.1.0",
   "private": true,
@@ -17,7 +17,7 @@
     "reactstrap": "^8.6.0"
   },
   "scripts": {
-    "start-server": "cross-env NODE_ENV=development nodemon server/server.js --watch server/*",
+    "start-server": "cross-env NODE_ENV=development nodemon api/bin/www --watch api/*",
     "start-front": "react-scripts start",
     "build-front": "react-scripts build",
     "test": "react-scripts test",

@@ -6,7 +6,7 @@ class MenuItem extends Component {
     let itemName = this.props.itemName;
     return (
       <NavItem>
-        <NavLink href="/" className="text-dark">
+        <NavLink href="" className="text-dark">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -35,7 +35,7 @@ class UserMenu extends Component {
       return null;
     }
     return (
-      <div id="user-menu" className="sidebar-sticky pt-3" display={isDisplay}>
+      <div id="user-menu" className="sidebar-sticky sticky-top pt-5" display={isDisplay}>
         <Nav className="flex-column">
           <MenuItem itemName="Username"></MenuItem>
           <MenuItem itemName="Favor - U owe to Others"></MenuItem>

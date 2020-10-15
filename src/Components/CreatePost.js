@@ -16,7 +16,7 @@ class CreatePost extends Component {
       return null;
     }
     return (
-      <Card id="create-post" className="my-3">
+      <Card id="create-post" className="my-3 mt-5">
         <Form id="post-form" className="card-body d-flex flex-column">
           <Input type="text" placeholder="Description"></Input>
           <InputGroup id="favor-option" size="sm">

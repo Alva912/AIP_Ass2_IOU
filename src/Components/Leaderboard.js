@@ -38,7 +38,7 @@ class Leaderboard extends Component {
       return null;
     }
     return (
-      <CardBody id="leaderboard">
+      <CardBody id="leaderboard" className="sticky-top pt-5">
         <CardTitle>Leaderboard</CardTitle>
         <LeadUser></LeadUser>
         <LeadUser></LeadUser>

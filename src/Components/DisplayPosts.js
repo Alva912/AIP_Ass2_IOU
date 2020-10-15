@@ -60,6 +60,12 @@ class DisplayPosts extends Component {
         <Post></Post>
         <Post></Post>
         <Post></Post>
+        <Post></Post>
+        <Post></Post>
+        <Post></Post>
+        <Post></Post>
+        <Post></Post>
+        <Post></Post>
       </div>
     );
   }
