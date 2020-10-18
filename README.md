@@ -81,6 +81,9 @@ Now it's time to develop our core [CRUD](https://en.wikipedia.org/wiki/Create,_r
 - **Jiahua Li**
   - 13507912@student.uts.edu.au
   - lijahua912@gmail.com
+- **Shuai Sun**
+  - 13675778@student.uts.edu.au
+  - dysun1024@gmail.com
 
 # Changelog:
 
