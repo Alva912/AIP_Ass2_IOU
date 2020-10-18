@@ -24,7 +24,7 @@ var Reward = require('./models/reward');
 
 var mongoose = require('mongoose');
 var mongoDB = userArgs[0];
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -38,9 +38,9 @@ var users = [];
 var posts = [];
 var rewards = [];
 
-function userCreate(user_name, email, password, cb){
-  userdetail = {user_name:user_name, email:email, password:password}
-  
+function userCreate(user_name, email, password, cb) {
+  userdetail = { user_name: user_name, email: email, password: password }
+
   var user = new User(userdetail);
   user.save(function (err) {
     if (err) {
@@ -48,139 +48,24 @@ function userCreate(user_name, email, password, cb){
       return
     }
     console.log('New User: ' + user);
-    users.push(user)
-    cb(null,user)
-  } );
+    users.push(user);
+    cb(null, user)
+  });
 }
 
-
-// function authorCreate(first_name, family_name, d_birth, d_death, cb) {
-//   authordetail = {first_name:first_name , family_name: family_name }
-//   if (d_birth != false) authordetail.date_of_birth = d_birth
-//   if (d_death != false) authordetail.date_of_death = d_death
-  
-//   var author = new Author(authordetail);
-       
-//   author.save(function (err) {
-//     if (err) {
-//       cb(err, null)
-//       return
-//     }
-//     console.log('New Author: ' + author);
-//     authors.push(author)
-//     cb(null, author)
-//   }  );
-// }
-
-// function genreCreate(name, cb) {
-//   var genre = new Genre({ name: name });
-       
-//   genre.save(function (err) {
-//     if (err) {
-//       cb(err, null);
-//       return;
-//     }
-//     console.log('New Genre: ' + genre);
-//     genres.push(genre)
-//     cb(null, genre);
-//   }   );
-// }
-
-// function bookCreate(title, summary, isbn, author, genre, cb) {
-//   bookdetail = { 
-//     title: title,
-//     summary: summary,
-//     author: author,
-//     isbn: isbn
-//   }
-//   if (genre != false) bookdetail.genre = genre
-    
-//   var book = new Book(bookdetail);    
-//   book.save(function (err) {
-//     if (err) {
-//       cb(err, null)
-//       return
-//     }
-//     console.log('New Book: ' + book);
-//     books.push(book)
-//     cb(null, book)
-//   }  );
-// }
-
-
-// function bookInstanceCreate(book, imprint, due_back, status, cb) {
-//   bookinstancedetail = { 
-//     book: book,
-//     imprint: imprint
-//   }    
-//   if (due_back != false) bookinstancedetail.due_back = due_back
-//   if (status != false) bookinstancedetail.status = status
-    
-//   var bookinstance = new BookInstance(bookinstancedetail);    
-//   bookinstance.save(function (err) {
-//     if (err) {
-//       console.log('ERROR CREATING BookInstance: ' + bookinstance);
-//       cb(err, null)
-//       return
-//     }
-//     console.log('New BookInstance: ' + bookinstance);
-//     bookinstances.push(bookinstance)
-//     cb(null, book)
-//   }  );
-// }
-
 function createUsers(cb) {
-  async.series([
-    function(callback) {
-      userCreate('Ariel', 'ariel@gmail.com', 'ariel123');
+  async.parallel([
+    function (callback) {
+      userCreate('Lucy', 'Lucy@gmail.com', 'Lucy123',callback);
     },
-    function(callback) {
-      userCreate('Dylan', 'dylan@gmail.com', 'dylan123');
+    function (callback) {
+      userCreate('Dylan', 'dylan@gmail.com', 'dylan123',callback);
     },
-    function(callback) {
-      userCreate('Damon', 'damon@gmail.com', 'damonl123');
+    function (callback) {
+      userCreate('Damon', 'damon@gmail.com', 'damonl123',callback);
     },
   ], cb);
 }
-
-
-
-
-
-
-
-
-// function createGenreAuthors(cb) {
-//     async.series([
-//         function(callback) {
-//           authorCreate('Patrick', 'Rothfuss', '1973-06-06', false, callback);
-//         },
-//         function(callback) {
-//           authorCreate('Ben', 'Bova', '1932-11-8', false, callback);
-//         },
-//         function(callback) {
-//           authorCreate('Isaac', 'Asimov', '1920-01-02', '1992-04-06', callback);
-//         },
-//         function(callback) {
-//           authorCreate('Bob', 'Billings', false, false, callback);
-//         },
-//         function(callback) {
-//           authorCreate('Jim', 'Jones', '1971-12-16', false, callback);
-//         },
-//         function(callback) {
-//           genreCreate("Fantasy", callback);
-//         },
-//         function(callback) {
-//           genreCreate("Science Fiction", callback);
-//         },
-//         function(callback) {
-//           genreCreate("French Poetry", callback);
-//         },
-//         ],
-//         // optional callback
-//         cb);
-// }
-
 
 // function createBooks(cb) {
 //     async.parallel([
@@ -210,64 +95,21 @@ function createUsers(cb) {
 //         cb);
 // }
 
-
-// function createBookInstances(cb) {
-//     async.parallel([
-//         function(callback) {
-//           bookInstanceCreate(books[0], 'London Gollancz, 2014.', false, 'Available', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[1], ' Gollancz, 2011.', false, 'Loaned', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[2], ' Gollancz, 2015.', false, false, callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Available', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Maintenance', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Loaned', callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[0], 'Imprint XXX2', false, false, callback)
-//         },
-//         function(callback) {
-//           bookInstanceCreate(books[1], 'Imprint XXX3', false, false, callback)
-//         }
-//         ],
-//         // Optional callback
-//         cb);
-// }
-
-
-
 async.series([
-    createUsers
+  createUsers
 ],
-// Optional callback
-function(err, results) {
+  // Optional callback
+  function (err, results) {
     if (err) {
-        console.log('FINAL ERR: '+err);
+      console.log('FINAL ERR: ' + err);
     }
     else {
-        console.log('Users: '+users);
-        
+      console.log('Users: ' + users);
+
     }
     // All done, disconnect from database
     mongoose.connection.close();
-});
+  });
 
 
 
