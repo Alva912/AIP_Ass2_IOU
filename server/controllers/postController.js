@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 // Display list of all Posts.
 exports.getAllPosts = function (req, res, next) {
 
-    Post.find()
+    Post.find({post_state: 'Initial'})
         .sort([['post_date', 'ascending']])
         .exec(function (err, allPosts) {
             if (err) { return next(err); }
