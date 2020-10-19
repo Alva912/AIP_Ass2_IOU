@@ -6,7 +6,7 @@ var async = require('async');
 const { body, validationResult } = require("express-validator");
 
 exports.index = function(req, res) {
-    res.send('NOT IMPLEMENTED: Site Home Page');
+    res.send('The API for assignment 2 is still being tested. Please wait！');
 };
 
 // Display list of all Posts.
@@ -25,17 +25,17 @@ exports.getAllPosts = function (req, res, next) {
 };
 
 // Display detail page for a specific post.
-exports.post_detail = function(req, res) {
+exports.getPostById = function(req, res) {
     res.send('NOT IMPLEMENTED: Post detail: ' + req.params.id);
 };
 
 // Display Post create form on GET.
-exports.psot_create_g = function(req, res) {
+exports.createPost_g = function(req, res) {
     res.send('NOT IMPLEMENTED: post create GET');
 };
 
 // Handle Post create on POST.
-exports.post_create_p = function (req, res, next) {
+exports.createPost_p = function (req, res, next) {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
@@ -70,22 +70,22 @@ exports.post_create_p = function (req, res, next) {
 };
 
 // Display Post delete form on GET.
-exports.post_delete_g = function(req, res) {
+exports.deletePost_g = function(req, res) {
     res.send('NOT IMPLEMENTED: Post delete GET');
 };
 
 // Handle Post delete on POST.
-exports.post_delete_p = function(req, res) {
+exports.deletePost_p = function(req, res) {
     res.send('NOT IMPLEMENTED: Post delete POST');
 };
 
 // Display Post update form on GET.
-exports.post_update_g = function(req, res) {
+exports.updatePost_g = function(req, res) {
     res.send('NOT IMPLEMENTED: Post update GET');
 };
 
 // Handle Post update on POST.
-exports.post_update_p = function(req, res) {
+exports.updatePost_p = function(req, res) {
     res.send('NOT IMPLEMENTED: Post update POST');
 };
 
