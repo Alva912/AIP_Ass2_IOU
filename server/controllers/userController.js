@@ -5,42 +5,6 @@ var Reward = require('../models/reward');
 var async = require('async');
 const { body, validationResult } = require("express-validator");
 
-// Display User create form on GET.
-exports.user_create_g = function (req, res, next) {
-
-};
-
-// Handle User create on POST.
-exports.user_create_p = function (req, res, next) {
-    // Extract the validation errors from a request.
-    const errors = validationResult(req);
-
-    // Create User object with escaped and trimmed data
-    var user = new User(
-        {
-            user_name: req.body.user_name,
-            email: req.body.email,
-            password: req.body.password,
-        }
-    );
-
-    if (!errors.isEmpty()) {
-        // There are errors. Render form again with sanitized values/errors messages.
-    }
-    else {
-        // Data from form is valid.
-        // Save User.
-        user.save(function (err) {
-            if (err) { return next(err); }
-            // Successful - redirect to new user record.          
-            res.status(201).json({
-                success: true,
-                user
-            });
-        });
-    }
-};
-
 // Display list of all Users.
 exports.getAllUsers = function (req, res, next) {
 
@@ -89,33 +53,52 @@ exports.getUserById = function (req, res, next) {
     });
 };
 
+// Display User create form on GET.
+exports.user_create_g = function (req, res, next) {
 
-// Display Other owe User
-exports.other_owe_user = function (req, res, next) {
-
-    async.parallel({
-        user: function (callback) {
-            User.findById(req.params.id)
-                .exec(callback)
-        },
-        user_owe_other: function(callback) {
-            Reward.find({'provider_user':req.params.id }, 'reward_type reward_quantity post_id')
-                .exec(callback)
-        },
-    }, function (err, results) {
-        if (err) { return next(err); } // Error in API usage.
-        if (results.user == null) { // No results.
-            var err = new Error('User not found');
-            err.status = 404;
-            return next(err);
-        }
-        // Successful, so render.
-        res.status(201).json({
-            success: true,
-            user_owe_other: results.user_owe_other
-        });
-    });
 };
+
+// Handle User create on POST.
+exports.user_create_p = function (req, res, next) {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create User object with escaped and trimmed data
+    var user = new User(
+        {
+            user_name: req.body.user_name,
+            email: req.body.email,
+            password: req.body.password,
+        }
+    );
+
+    if (!errors.isEmpty()) {
+        // There are errors. Render form again with sanitized values/errors messages.
+    }
+    else {
+        // Data from form is valid.
+        // Save User.
+        user.save(function (err) {
+            if (err) { return next(err); }
+            // Successful - redirect to new user record.          
+            res.status(201).json({
+                success: true,
+                user
+            });
+        });
+    }
+};
+
+// Display User delete form on GET.
+exports.deleteUser_g = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author delete GET');
+};
+
+// Handle Author delete on POST.
+exports.deleteUser_p = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author delete POST');
+};
+
 
 // Display User update form on GET.
 exports.updateUser_g = function (req, res, next) {
