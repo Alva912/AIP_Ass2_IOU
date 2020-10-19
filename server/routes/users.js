@@ -5,9 +5,7 @@ var router = express.Router();
 var user_controllor = require('../controllers/userController');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/', user_controllor.getAllUsers);
 
 router.get('/cool/', function(req, res, next) {
   res.send('The ass2 is so hard!');
