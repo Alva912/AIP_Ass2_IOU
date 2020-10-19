@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 // Display list of all Posts.
 exports.getAllPosts = function (req, res, next) {
 
-    Post.find({post_state: 'Initial'})
+    Post.find({ post_state: 'Initial' })
         .sort([['post_date', 'ascending']])
         .exec(function (err, allPosts) {
             if (err) { return next(err); }
@@ -16,6 +16,22 @@ exports.getAllPosts = function (req, res, next) {
             });
         })
 };
+
+// Display list of all Posts about a specific Post.
+exports.getAllMyPosts = function (req, res, next) {
+
+    Post.find({ publisher_user: req.body.publisher_user })
+        .sort([['post_date', 'ascending']])
+        .exec(function (err, allPosts) {
+            if (err) { return next(err); }
+            // Successful, so response.
+            res.status(201).json({
+                success: true,
+                allPosts
+            });
+        })
+};
+
 
 // Go to page for publish an event.
 exports.post_create_g = function (req, res, next) {
