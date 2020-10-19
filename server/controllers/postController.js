@@ -6,22 +6,22 @@ var async = require('async');
 const { body, validationResult } = require("express-validator");
 
 // Display record counts.
-exports.index = function(req, res) {
+exports.recordCounts = function (req, res) {
 
     async.parallel({
-        reward_count: function(callback) {
-            Reward.countDocuments({},callback);
+        reward_count: function (callback) {
+            Reward.countDocuments({}, callback);
         },
-        post_count: function(callback) {
-            Post.countDocuments({},callback);
+        post_count: function (callback) {
+            Post.countDocuments({}, callback);
         },
-        post_available_count: function(callback) {
-            Post.countDocuments({post_state:'Initial'},callback);
+        post_available_count: function (callback) {
+            Post.countDocuments({ post_state: 'Initial' }, callback);
         },
-        user_count: function(callback) {
-            User.countDocuments({},callback);
+        user_count: function (callback) {
+            User.countDocuments({}, callback);
         },
-    }, function(err, results) {
+    }, function (err, results) {
         res.status(201).json({
             success: true,
             results
@@ -33,6 +33,7 @@ exports.index = function(req, res) {
 exports.getAllPosts = function (req, res, next) {
 
     Post.find({ post_state: 'Initial' })
+        .populate('reward')
         .sort([['post_date', 'ascending']])
         .exec(function (err, allPosts) {
             if (err) { return next(err); }
@@ -45,12 +46,28 @@ exports.getAllPosts = function (req, res, next) {
 };
 
 // Display detail page for a specific post.
-exports.getPostById = function(req, res) {
-    res.send('NOT IMPLEMENTED: Post detail: ' + req.params.id);
+exports.getPostById = function (req, res, next) {
+    Post.findById(req.params.id)
+        .populate('publisher_user')
+        .populate('reward')
+        .populate('acceptant_user')
+        .exec(function (err, post) {
+            if (err) { return next(err); }
+            if (post == null) { // No results.
+                var err = new Error('Post not found');
+                err.status = 404;
+                return next(err);
+            }
+            // Successful, so render.
+            res.status(201).json({
+                success: true,
+                post
+            });
+        })
 };
 
 // Display Post create form on GET.
-exports.createPost_g = function(req, res) {
+exports.createPost_g = function (req, res) {
     res.send('NOT IMPLEMENTED: post create GET');
 };
 
@@ -90,22 +107,22 @@ exports.createPost_p = function (req, res, next) {
 };
 
 // Display Post delete form on GET.
-exports.deletePost_g = function(req, res) {
+exports.deletePost_g = function (req, res) {
     res.send('NOT IMPLEMENTED: Post delete GET');
 };
 
 // Handle Post delete on POST.
-exports.deletePost_p = function(req, res) {
+exports.deletePost_p = function (req, res) {
     res.send('NOT IMPLEMENTED: Post delete POST');
 };
 
 // Display Post update form on GET.
-exports.updatePost_g = function(req, res) {
+exports.updatePost_g = function (req, res) {
     res.send('NOT IMPLEMENTED: Post update GET');
 };
 
 // Handle Post update on POST.
-exports.updatePost_p = function(req, res) {
+exports.updatePost_p = function (req, res) {
     res.send('NOT IMPLEMENTED: Post update POST');
 };
 
