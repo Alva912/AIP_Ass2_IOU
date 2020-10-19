@@ -5,8 +5,28 @@ var async = require('async');
 
 const { body, validationResult } = require("express-validator");
 
+// Display record counts.
 exports.index = function(req, res) {
-    res.send('The API for assignment 2 is still being tested. Please wait！');
+
+    async.parallel({
+        reward_count: function(callback) {
+            Reward.countDocuments({},callback);
+        },
+        post_count: function(callback) {
+            Post.countDocuments({},callback);
+        },
+        post_available_count: function(callback) {
+            Post.countDocuments({post_state:'Initial'},callback);
+        },
+        user_count: function(callback) {
+            User.countDocuments({},callback);
+        },
+    }, function(err, results) {
+        res.status(201).json({
+            success: true,
+            results
+        });
+    });
 };
 
 // Display list of all Posts.
