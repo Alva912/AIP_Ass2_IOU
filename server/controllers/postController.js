@@ -2,6 +2,21 @@ var Post = require('../models/post');
 
 const { body, validationResult } = require("express-validator");
 
+// Display list of all Posts.
+exports.getAllPosts = function (req, res, next) {
+
+    Post.find()
+        .sort([['post_date', 'ascending']])
+        .exec(function (err, allPosts) {
+            if (err) { return next(err); }
+            // Successful, so response.
+            res.status(201).json({
+                success: true,
+                allPosts
+            });
+        })
+};
+
 // Go to page for publish an event.
 exports.post_create_g = function (req, res, next) {
 
