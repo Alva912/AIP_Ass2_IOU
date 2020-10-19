@@ -1,6 +1,13 @@
 var Post = require('../models/post');
+var User = require('../models/user');
+var Reward = require('../models/reward');
+var async = require('async');
 
 const { body, validationResult } = require("express-validator");
+
+exports.index = function(req, res) {
+    res.send('NOT IMPLEMENTED: Site Home Page');
+};
 
 // Display list of all Posts.
 exports.getAllPosts = function (req, res, next) {
@@ -17,25 +24,14 @@ exports.getAllPosts = function (req, res, next) {
         })
 };
 
-// Display list of all Posts about a specific Post.
-exports.getAllMyPosts = function (req, res, next) {
-
-    Post.find({ publisher_user: req.body.publisher_user })
-        .sort([['post_date', 'ascending']])
-        .exec(function (err, allPosts) {
-            if (err) { return next(err); }
-            // Successful, so response.
-            res.status(201).json({
-                success: true,
-                allPosts
-            });
-        })
+// Display detail page for a specific post.
+exports.post_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: Post detail: ' + req.params.id);
 };
 
-
-// Go to page for publish an event.
-exports.post_create_g = function (req, res, next) {
-
+// Display Post create form on GET.
+exports.psot_create_g = function(req, res) {
+    res.send('NOT IMPLEMENTED: post create GET');
 };
 
 // Handle Post create on POST.
@@ -73,8 +69,41 @@ exports.post_create_p = function (req, res, next) {
     }
 };
 
+// Display Post delete form on GET.
+exports.post_delete_g = function(req, res) {
+    res.send('NOT IMPLEMENTED: Post delete GET');
+};
+
+// Handle Post delete on POST.
+exports.post_delete_p = function(req, res) {
+    res.send('NOT IMPLEMENTED: Post delete POST');
+};
+
+// Display Post update form on GET.
+exports.post_update_g = function(req, res) {
+    res.send('NOT IMPLEMENTED: Post update GET');
+};
+
+// Handle Post update on POST.
+exports.post_update_p = function(req, res) {
+    res.send('NOT IMPLEMENTED: Post update POST');
+};
 
 
+// Display list of all Posts about a specific Post.
+exports.getAllMyPosts = function (req, res, next) {
+
+    Post.find({ publisher_user: req.body.publisher_user })
+        .sort([['post_date', 'ascending']])
+        .exec(function (err, allPosts) {
+            if (err) { return next(err); }
+            // Successful, so response.
+            res.status(201).json({
+                success: true,
+                allPosts
+            });
+        })
+};
 
 
 
