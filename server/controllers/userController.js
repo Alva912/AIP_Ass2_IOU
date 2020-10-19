@@ -55,7 +55,7 @@ exports.getUserById = function (req, res, next) {
 
 // Display User create form on GET.
 exports.createUser_g = function (req, res, next) {
-
+    res.send('NOT IMPLEMENTED: user create GET');
 };
 
 // Handle User create on POST.
