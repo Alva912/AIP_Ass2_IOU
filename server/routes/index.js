@@ -13,10 +13,10 @@ router.get('/signup', user_controller.user_create_g);
 router.post('/signup', user_controller.user_create_p);
 
 // Go to page for publish an event.
-router.get('/post', post_controller.post_create_g);
+router.get('/post/publish', post_controller.post_create_g);
 
 //POST request for creating Post.
-router.post('/post', post_controller.post_create_p);
+router.post('/post/create', post_controller.post_create_p);
 
 
 
@@ -29,10 +29,6 @@ router.post('/post', post_controller.post_create_p);
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
-
-
-
 
 
 
