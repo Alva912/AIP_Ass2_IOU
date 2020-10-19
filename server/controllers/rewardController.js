@@ -53,8 +53,36 @@ exports.createReward_g = function (req, res) {
 };
 
 // Handle reward create on POST.
-exports.createReward_p = function (req, res) {
-    res.send('NOT IMPLEMENTED: Reward create POST');
+exports.createReward_p = function (req, res, next) {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create a reward object with escaped and trimmed data.
+    var reward = new reward(
+        {
+            provider_user: req.body.provider_user,
+            reward_type: req.body.reward_type,
+            reward_quantity: req.body.reward_quantity,
+            post_id: req.body.post_id,
+            post_state: req.body.post_state,
+            acceptant_user: req.body.acceptant_user,
+            add_date: req.body.add_date
+        });
+
+    if (!errors.isEmpty()) {
+        // There are errors. Render form again with sanitized values/error messages.
+    }
+    else {
+        // Data from form is valid. Save reward.
+        reward.save(function (err) {
+            if (err) { return next(err); }
+            // Successful - redirect to new reward record.
+            res.status(201).json({
+                success: true,
+                reward
+            });
+        });
+    }
 };
 
 // Display reward delete form on GET.
