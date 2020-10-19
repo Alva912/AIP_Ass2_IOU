@@ -7,7 +7,7 @@ var reward_controller = require('../controllers/rewardController');
 var user_controller = require('../controllers/userController');
 
 //GET front page - Site Home Page
-router.get('/', post_controller.index);
+router.get('/', post_controller.recordCounts);
 
 // REWARD ROUTES //
 // GET request for creating a reward. NOTE This must come before routes that display reward (uses id).
