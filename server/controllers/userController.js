@@ -54,12 +54,12 @@ exports.getUserById = function (req, res, next) {
 };
 
 // Display User create form on GET.
-exports.user_create_g = function (req, res, next) {
+exports.createUser_g = function (req, res, next) {
 
 };
 
 // Handle User create on POST.
-exports.user_create_p = function (req, res, next) {
+exports.createUser_p = function (req, res, next) {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
@@ -91,12 +91,12 @@ exports.user_create_p = function (req, res, next) {
 
 // Display User delete form on GET.
 exports.deleteUser_g = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author delete GET');
+    res.send('NOT IMPLEMENTED: user delete GET');
 };
 
-// Handle Author delete on POST.
+// Handle user delete on POST.
 exports.deleteUser_p = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author delete POST');
+    res.send('NOT IMPLEMENTED: user delete POST');
 };
 
 
