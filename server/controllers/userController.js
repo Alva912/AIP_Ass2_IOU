@@ -4,8 +4,6 @@ var Reward = require('../models/reward');
 
 var async = require('async');
 const { body, validationResult } = require("express-validator");
-const reward = require('../models/reward');
-const user = require('../models/user');
 
 // Display User create form on GET.
 exports.user_create_g = function (req, res, next) {
@@ -66,12 +64,12 @@ exports.getUserById = function (req, res, next) {
             User.findById(req.params.id)
                 .exec(callback)
         },
-        userOweOther: function(callback) {
-            Reward.find({'provider_user':req.params.id },'user owe other')
+        user_owe_other: function(callback) {
+            Reward.find({'provider_user':req.params.id }, 'reward_type reward_quantity post_id')
                 .exec(callback)
         },
-        otherOweUser: function(callback) {
-            Reward.find({'acceptant_user':req.params.id}, 'other owe user')
+        other_owe_user: function(callback) {
+            Reward.find({'acceptant_user':req.params.id}, 'reward_type reward_quantity post_id')
                 .exec(callback)
         },
     }, function (err, results) {
@@ -85,8 +83,36 @@ exports.getUserById = function (req, res, next) {
         res.status(201).json({
             success: true,
             user: results.user,
-            userOweOther: results.userOweOther,
-            otherOweUser: results.otherOweUser
+            user_owe_other: results.user_owe_other,
+            other_owe_user: results.other_owe_user
+        });
+    });
+};
+
+
+// Display Other owe User
+exports.other_owe_user = function (req, res, next) {
+
+    async.parallel({
+        user: function (callback) {
+            User.findById(req.params.id)
+                .exec(callback)
+        },
+        user_owe_other: function(callback) {
+            Reward.find({'provider_user':req.params.id }, 'reward_type reward_quantity post_id')
+                .exec(callback)
+        },
+    }, function (err, results) {
+        if (err) { return next(err); } // Error in API usage.
+        if (results.user == null) { // No results.
+            var err = new Error('User not found');
+            err.status = 404;
+            return next(err);
+        }
+        // Successful, so render.
+        res.status(201).json({
+            success: true,
+            user_owe_other: results.user_owe_other
         });
     });
 };

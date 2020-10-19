@@ -11,6 +11,7 @@ var RewardSchema = new Schema(
     post_id: {type: Schema.Types.ObjectId, ref: 'Post', require: true},
     post_state: {type: String, require: true, enum: ['Initial', 'Accepted', 'Completed', 'Finished', 'Expired'], default: 'Initial'},
     acceptant_user: {type: Schema.Types.ObjectId, ref: 'User'},
+    add_date: {type: Date, default: Date.now},
   }
 );
 
