@@ -9,7 +9,7 @@ const { body, validationResult } = require("express-validator");
 exports.getAllUsers = function (req, res, next) {
 
     User.find()
-        .sort([['user_name', 'ascending']])
+        .sort([['username', 'ascending']])
         .exec(function (err, allUsers) {
             if (err) { return next(err); }
             // Successful, so render.
@@ -66,7 +66,7 @@ exports.createUser_p = function (req, res, next) {
     // Create User object with escaped and trimmed data
     var user = new User(
         {
-            user_name: req.body.user_name,
+            username: req.body.username,
             email: req.body.email,
             password: req.body.password,
         }
@@ -124,7 +124,7 @@ exports.updateUser_p = function (req, res, next) {
     // Create User object data (and the old id!)
     var user = new User(
         {
-            user_name: req.body.user_name,
+            username: req.body.username,
             email: req.body.email,
             password: req.body.password,
             _id: req.params.id
