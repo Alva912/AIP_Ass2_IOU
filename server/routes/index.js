@@ -39,7 +39,7 @@ router.get('/rewards', reward_controller.getAllRewards);
 router.get('/user/create', user_controller.createUser_g);
 
 // POST request for creating user.
-router.post('/user/create', user_controller.createUser_p);
+router.post('/signup', user_controller.createUser_p);
 
 // GET request to delete user.
 router.get('/user/:id/delete', user_controller.deleteUser_g);
