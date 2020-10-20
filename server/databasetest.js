@@ -29,8 +29,8 @@ var users = [];
 var posts = [];
 var rewards = [];
 
-function userCreate(user_name, email, password, cb) {
-  userdetail = { user_name: user_name, email: email, password: password }
+function userCreate(username, email, password, cb) {
+  userdetail = { username: username, email: email, password: password }
 
   var user = new User(userdetail);
   user.save(function (err) {
