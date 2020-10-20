@@ -17,7 +17,7 @@
     "reactstrap": "^8.6.0"
   },
   "scripts": {
-    "start-server": "cross-env NODE_ENV=development nodemon api/bin/www --watch api/*",
+    "start-server": "cross-env NODE_ENV=development nodemon server/bin/www --watch server/*",
     "start-front": "react-scripts start",
     "build-front": "react-scripts build",
     "test": "react-scripts test",
