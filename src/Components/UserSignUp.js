@@ -10,6 +10,11 @@ class UserSignUp extends Component {
         email: "",
         password: "",
       },
+      currentUser: {
+        id: "",
+        name: "",
+        email: "",
+      },
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -28,7 +33,14 @@ class UserSignUp extends Component {
       body: JSON.stringify(data),
     });
     let as_json = await response.json();
-    this.setState({ user: as_json.user });
+    // let as_user = as_json.user;
+    this.setState({
+      currentUser: {
+        id: as_json.user._id,
+        name: as_json.user.username,
+        email: as_json.user.email,
+      },
+    });
   }
 
   handleChange(event, property) {
@@ -40,15 +52,13 @@ class UserSignUp extends Component {
   // ANCHOR Presentation
   render() {
     let isDisplay = this.props.isDisplay;
+    let _user = this.state.currentUser;
     if (!isDisplay) {
       return null;
     }
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
-        <p>{this.state.userInput.username}</p>
-        <p>{this.state.userInput.email}</p>
-        <p>{this.state.userInput.password}</p>
         <FormGroup>
           <Label for="username">User Name</Label>
           <Input
@@ -88,8 +98,8 @@ class UserSignUp extends Component {
           color="primary"
           size="lg"
           block
-          onClick={() => {
-            this.props.onLoggedIn();
+          onClick={(_user) => {
+            this.props.onLoggedIn(_user);
             isDisplay = !isDisplay;
             this.handleClick();
           }}

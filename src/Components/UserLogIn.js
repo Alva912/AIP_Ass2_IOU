@@ -2,8 +2,55 @@ import React, { Component } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 class UserLogIn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: {
+        username: "",
+        email: "",
+        password: "",
+      },
+      currentUser: {
+        id: "",
+        name: "",
+        email: "",
+      },
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  // ANCHOR
+  async handleClick() {
+    let data = this.state.userInput;
+    let response = await fetch("/login", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Origin": "*",
+      },
+      body: JSON.stringify(data),
+    });
+    let as_json = await response.json();
+    this.setState({
+      currentUser: {
+        id: as_json.user._id,
+        name: as_json.user.username,
+        email: as_json.user.email,
+      },
+    });
+  }
+
+  handleChange(event, property) {
+    let inputs = this.state.userInput;
+    inputs[property] = event.target.value;
+    this.setState({ userInput: inputs });
+  }
+
   render() {
     let isDisplay = this.props.isDisplay;
+    let _user = this.state.currentUser;
     if (!isDisplay) {
       return null;
     }
@@ -21,6 +68,7 @@ class UserLogIn extends Component {
             placeholder="Email address"
             required
             autoFocus
+            onChange={(event) => this.handleChange(event, "email")}
           ></Input>
         </FormGroup>
         <FormGroup>
@@ -33,14 +81,16 @@ class UserLogIn extends Component {
             className="form-control"
             placeholder="Password"
             required
+            onChange={(event) => this.handleChange(event, "password")}
           ></Input>
         </FormGroup>
         <Button
           color="primary"
           size="lg"
           block
-          onClick={() => {
-            this.props.onLoggedIn();
+          onClick={(_user) => {
+            this.handleClick();
+            this.props.onLoggedIn(_user);
             isDisplay = !isDisplay;
           }}
         >

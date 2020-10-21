@@ -20,15 +20,15 @@ class CreatePost extends Component {
         <Form id="post-form" className="card-body d-flex flex-column">
           <Input type="text" placeholder="Description"></Input>
           <InputGroup id="favor-option" size="sm">
-            <CustomInput type="select" name="quest-type">
-              <option selected disabled>
+            <CustomInput type="select" id="quest-type">
+              <option defaultValue disabled>
                 Quest Type
               </option>
               <option value="cleaning">Cleaning</option>
               <option value="snacking">Snacking</option>
             </CustomInput>
-            <CustomInput type="select" name="reward-type">
-              <option selected disabled>
+            <CustomInput type="select" id="reward-type">
+              <option defaultValue disabled>
                 Reward Type
               </option>
               <option value="coffee">Coffee</option>
@@ -37,8 +37,8 @@ class CreatePost extends Component {
               <option value="pizza">Pizza</option>
               <option value="cupcake">Cupcake</option>
             </CustomInput>
-            <CustomInput type="select" name="reward-num">
-              <option selected disabled>
+            <CustomInput type="select" id="reward-num">
+              <option defaultValue disabled>
                 Quantity
               </option>
               <option value="1">1</option>

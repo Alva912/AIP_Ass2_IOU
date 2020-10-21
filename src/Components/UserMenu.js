@@ -4,9 +4,10 @@ import { Nav, NavItem, NavLink } from "reactstrap";
 class MenuItem extends Component {
   render() {
     let itemName = this.props.itemName;
+    // let id = this.props.id;
     return (
       <NavItem>
-        <NavLink href="" className="text-dark">
+        <NavLink href="/user/:id" className="text-dark">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -14,9 +15,9 @@ class MenuItem extends Component {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="feather feather-home"
           >
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -31,13 +32,15 @@ class MenuItem extends Component {
 class UserMenu extends Component {
   render() {
     let isDisplay = this.props.isDisplay;
+    let userId = this.props.userId;
+    let userName = this.props.userName;
     if (!isDisplay) {
       return null;
     }
     return (
-      <div id="user-menu" className="sidebar-sticky sticky-top pt-5" display={isDisplay}>
+      <div id="user-menu" className="sidebar-sticky sticky-top pt-5">
         <Nav className="flex-column">
-          <MenuItem itemName="Username"></MenuItem>
+          <MenuItem itemName={userName} id={userId}></MenuItem>
           <MenuItem itemName="Favor - U owe to Others"></MenuItem>
           <MenuItem itemName="Favor - Others owe U"></MenuItem>
           <MenuItem itemName="My Quests"></MenuItem>

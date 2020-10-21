@@ -23,6 +23,7 @@ const App = (props) => {
   const [isSigningUp, setIsSigningUp] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const onSigningUp = () => {
     setIsVisitor(false);
@@ -36,10 +37,11 @@ const App = (props) => {
     setIsLoggingIn(true);
   };
 
-  const onLoggedIn = () => {
+  const onLoggedIn = (_user) => {
     setIsSigningUp(false);
     setIsLoggingIn(false);
     setIsLoggedIn(true);
+    setCurrentUser({ id: _user.id, name: _user.name, email: _user.email });
   };
 
   return (
@@ -50,18 +52,6 @@ const App = (props) => {
         <NavbarBrand href="/" className="p-0">
           IOU Web App
         </NavbarBrand>
-        {/* <Nav className="ml-auto p-0">
-          <NavItem isDisplay={isVisitor | isLoggingIn}>
-            <Button color="primary" size="sm" outline onClick={onSigningUp}>
-              Sign Up
-            </Button>
-          </NavItem>
-          <NavItem isDisplay={isVisitor | isSigningUp}>
-            <Button color="secondary" size="sm" outline onClick={onLoggingIn}>
-              Log In
-            </Button>
-          </NavItem>
-        </Nav> */}
       </Navbar>
 
       {/* NOTE Dynamic content */}
@@ -74,18 +64,18 @@ const App = (props) => {
 
       <Row className="justify-content-between">
         <Col id="left-col" xs="3">
-          <UserMenu isDisplay={isLoggedIn}></UserMenu>
+          <UserMenu isDisplay={isLoggedIn} userName={currentUser.name} userId={currentUser.id}></UserMenu>
         </Col>
 
         <Col id="middle-col" xs="auto">
           {" "}
           <UserLogIn
             isDisplay={!isLoggedIn && isLoggingIn}
-            onLoggedIn={onLoggedIn}
+            onLoggedIn={(_user) => onLoggedIn(_user)}
           ></UserLogIn>
           <UserSignUp
             isDisplay={!isLoggedIn && isSigningUp}
-            onLoggedIn={onLoggedIn}
+            onLoggedIn={(_user) => onLoggedIn(_user)}
           ></UserSignUp>
           <CreatePost isDisplay={isLoggedIn}></CreatePost>
           {/* TODO Change according to user menu option selected */}
