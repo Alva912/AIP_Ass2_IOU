@@ -52,7 +52,7 @@ class UserSignUp extends Component {
   // ANCHOR Presentation
   render() {
     // let isDisplay = this.props.isDisplay;
-    let _user = this.state.currentUser;
+    // let _user = this.state.currentUser;
     // if (!isDisplay) {
     //   return null;
     // }
@@ -98,8 +98,8 @@ class UserSignUp extends Component {
           color="primary"
           size="lg"
           block
-          onClick={(_user) => {
-            this.props.onLoggedIn(_user);
+          onClick={() => {
+            // this.props.onLoggedIn(this.state.currentUser);
             // isDisplay = !isDisplay;
             this.handleClick();
           }}

@@ -49,11 +49,11 @@ class UserLogIn extends Component {
   }
 
   render() {
-    let isDisplay = this.props.isDisplay;
-    let _user = this.state.currentUser;
-    if (!isDisplay) {
-      return null;
-    }
+    // let isDisplay = this.props.isDisplay;
+    // let _user = this.state.currentUser;
+    // if (!isDisplay) {
+    //   return null;
+    // }
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Log In</h1>
@@ -88,10 +88,10 @@ class UserLogIn extends Component {
           color="primary"
           size="lg"
           block
-          onClick={(_user) => {
+          onClick={() => {
             this.handleClick();
-            this.props.onLoggedIn(_user);
-            isDisplay = !isDisplay;
+            // this.props.onLoggedIn(this.state.currentUser);
+            // isDisplay = !isDisplay;
           }}
         >
           Log In

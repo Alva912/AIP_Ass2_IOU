@@ -10,7 +10,7 @@ const SignUp = (props) => {
 
       <Col id="middle-col" xs="auto">
         <UserSignUp
-          onLoggedIn={(_user) => props.onLoggedIn(_user)}
+        //   onLoggedIn={(_user) => props.onLoggedIn(_user)}
         ></UserSignUp>
       </Col>
 
