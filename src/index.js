@@ -6,7 +6,7 @@ import "./reset.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // NOTE Test server API
-import Counter from "./Components/TestAPI.js";
+// import Counter from "./Components/TestAPI.js";
 
 import App from "./App.js";
 
@@ -17,4 +17,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-ReactDOM.render(<Counter />, document.getElementById("testAPI"));
+// ReactDOM.render(<Counter />, document.getElementById("testAPI"));

@@ -41,6 +41,9 @@ router.get('/user/create', user_controller.createUser_g);
 // POST request for creating user.
 router.post('/signup', user_controller.createUser_p);
 
+// POST request for login
+router.post('/login', user_controller.login_p)
+
 // GET request to delete user.
 router.get('/user/:id/delete', user_controller.deleteUser_g);
 
