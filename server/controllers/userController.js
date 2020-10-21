@@ -89,6 +89,32 @@ exports.createUser_p = function (req, res, next) {
     }
 };
 
+// User login
+exports.login_p = function (req, res) {
+    const user = await User.findOne({
+        username: req.body.username
+      })
+      if (!user) {
+        return res.status(422).send({
+          message: 'user not exist'
+        })
+      }
+      // bcrypt.compareSync
+      const isPasswordValid = require('bcrypt').compareSync(
+        req.body.password,
+        user.password
+      )
+      if (!isPasswordValid) {
+        return res.status(422).send({
+          message: 'The password is invalid'
+        })
+      }
+      res.send({
+        user
+      })
+}
+
+
 // Display User delete form on GET.
 exports.deleteUser_g = function(req, res) {
     res.send('NOT IMPLEMENTED: user delete GET');
