@@ -2,7 +2,7 @@
 import ReactDOM from "react-dom";
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { Navbar, NavbarBrand,Nav,NavItem,NavLink } from "reactstrap";
+import { Navbar, NavbarBrand,Nav,NavItem } from "reactstrap";
 
 // NOTE UI design style sheet module & library
 import "./reset.css";
@@ -24,17 +24,17 @@ const App = (props) => {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
-        <Navbar color="dark" dark expand="sm" fixed="top">
+        <Navbar color="dark" dark expand="sm" fixed="top" className="py-0 my-0">
           <NavbarBrand href="/" className="p-0">
             IOU Web App
           </NavbarBrand>
           {/* SECTION 测试React Router */}
-          <Nav className="mr-auto" navbar>
+          <Nav className="ml-auto py-0 my-0" navbar>
             <NavItem>
-              <NavLink href="/signup">SignUp</NavLink>
+              <Link to="/signup" className="btn btn-primary btn-sm m-1">SignUp</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/login">LogIn</NavLink>
+              <Link to="/login" className="btn btn-primary btn-sm m-1">LogIn</Link>
             </NavItem>
           </Nav>
           {/* !SECTION 测试React Router */}

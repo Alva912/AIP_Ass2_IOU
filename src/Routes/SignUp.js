@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Row, Col } from "reactstrap";
 
 import UserSignUp from "../Components/UserSignUp.js";
@@ -12,6 +13,7 @@ const SignUp = (props) => {
         <UserSignUp
         //   onLoggedIn={(_user) => props.onLoggedIn(_user)}
         ></UserSignUp>
+        <Link to="/login">Already have an account?</Link>
       </Col>
 
       <Col id="right-col" xs="3"></Col>
