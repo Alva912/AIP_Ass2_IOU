@@ -1,9 +1,9 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
 
-import WelcomeBanner from "../Components/WelcomeBanner.js";
-import DisplayPosts from "../Components/DisplayPosts.js";
-import Leaderboard from "../Components/Leaderboard.js";
+const WelcomeBanner = React.lazy(() => import('../Components/WelcomeBanner'));
+const DisplayPosts = React.lazy(() => import('../Components/DisplayPosts'));
+const Leaderboard = React.lazy(() => import('../Components/Leaderboard'));
 
 const Home = (props) => {
   return (

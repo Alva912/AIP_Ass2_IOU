@@ -9,7 +9,9 @@ const LogIn = (props) => {
       <Col id="left-col" xs="3"></Col>
 
       <Col id="middle-col" xs="auto">
-        <UserLogIn onLoggedIn={(_user) => props.onLoggedIn(_user)}></UserLogIn>
+        <UserLogIn
+        // onLoggedIn={(_user) => props.onLoggedIn(_user)}
+        ></UserLogIn>
       </Col>
 
       <Col id="right-col" xs="3"></Col>

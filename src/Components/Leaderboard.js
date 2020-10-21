@@ -33,10 +33,10 @@ class LeadUser extends Component {
 }
 class Leaderboard extends Component {
   render() {
-    let isDisplay = this.props.isDisplay;
-    if (!isDisplay) {
-      return null;
-    }
+    // let isDisplay = this.props.isDisplay;
+    // if (!isDisplay) {
+    //   return null;
+    // }
     return (
       <CardBody id="leaderboard" className="sticky-top pt-5">
         <CardTitle>Leaderboard</CardTitle>
