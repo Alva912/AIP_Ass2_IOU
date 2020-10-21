@@ -91,7 +91,7 @@ exports.createUser_p = function (req, res, next) {
 
 // User login
 exports.login_p = function (req, res) {
-    const user = await User.findOne({
+    const user =  User.findOne({
         username: req.body.username
       })
       if (!user) {
