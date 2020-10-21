@@ -51,11 +51,11 @@ class UserSignUp extends Component {
 
   // ANCHOR Presentation
   render() {
-    let isDisplay = this.props.isDisplay;
+    // let isDisplay = this.props.isDisplay;
     let _user = this.state.currentUser;
-    if (!isDisplay) {
-      return null;
-    }
+    // if (!isDisplay) {
+    //   return null;
+    // }
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
@@ -100,7 +100,7 @@ class UserSignUp extends Component {
           block
           onClick={(_user) => {
             this.props.onLoggedIn(_user);
-            isDisplay = !isDisplay;
+            // isDisplay = !isDisplay;
             this.handleClick();
           }}
         >
