@@ -89,30 +89,31 @@ exports.createUser_p = function (req, res, next) {
     }
 };
 
-// User login
+//User login 
 exports.login_p = function (req, res) {
-    const user =  User.findOne({
+    const user = User.findOne({
         username: req.body.username
-      })
-      if (!user) {
+    });
+    if (!user) {
         return res.status(422).send({
-          message: 'user not exist'
+            message:'user not exist'
         })
-      }
-      // bcrypt.compareSync
-      const isPasswordValid = require('bcrypt').compareSync(
+    };
+    const isPasswordValid = require('bcrypt').compareSync(
         req.body.password,
         user.password
-      )
-      if (!isPasswordValid) {
+    );
+    if (!isPasswordValid) {
         return res.status(422).send({
           message: 'The password is invalid'
         })
+      } else {
+        res.status(201).json({
+            success: true,
+            user
+        });
       }
-      res.send({
-        user
-      })
-}
+};
 
 
 // Display User delete form on GET.
