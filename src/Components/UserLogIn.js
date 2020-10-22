@@ -11,11 +11,11 @@ class UserLogIn extends Component {
         email: "",
         password: "",
       },
-      currentUser: {
-        id: "",
-        name: "",
-        email: "",
-      },
+      // currentUser: {
+      //   id: "",
+      //   name: "",
+      //   email: "",
+      // },
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -34,12 +34,17 @@ class UserLogIn extends Component {
       body: JSON.stringify(data),
     });
     let as_json = await response.json();
-    this.setState({
-      currentUser: {
-        id: as_json.user._id,
-        name: as_json.user.username,
-        email: as_json.user.email,
-      },
+    // this.setState({
+    //   currentUser: {
+    //     id: as_json.user._id,
+    //     name: as_json.user.username,
+    //     email: as_json.user.email,
+    //   },
+    // });
+    this.props.onLogIn({
+      id: as_json.user._id,
+      name: as_json.user.username,
+      email: as_json.user.email,
     });
   }
 
@@ -49,50 +54,45 @@ class UserLogIn extends Component {
     this.setState({ userInput: inputs });
   }
 
+  // ANCHOR Presentation
   render() {
-    // let isDisplay = this.props.isDisplay;
-    // let _user = this.state.currentUser;
-    // if (!isDisplay) {
-    //   return null;
-    // }
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Log In</h1>
         <FormGroup>
-          <Label for="inputEmail" className="sr-only">
-            Email address
+          <Label for="username" className="sr-only">
+            User Name
           </Label>
           <Input
-            type="email"
-            id="inputEmail"
+            type="text"
+            id="username"
             className="form-control"
-            placeholder="Email address"
+            placeholder="User Name"
             required
             autoFocus
-            onChange={(event) => this.handleChange(event, "email")}
+            onChange={(event) => this.handleChange(event, "username")}
           ></Input>
         </FormGroup>
         <FormGroup>
-          <Label for="inputPassword" className="sr-only">
+          <Label for="password" className="sr-only">
             Password
           </Label>
           <Input
             type="password"
-            id="inputPassword"
+            id="password"
             className="form-control"
             placeholder="Password"
             required
             onChange={(event) => this.handleChange(event, "password")}
           ></Input>
         </FormGroup>
+
         <Link
-          to="/user/"
           className="btn btn-primary btn-lg btn-block"
           onClick={() => {
-            // this.props.onLoggedIn(this.state.currentUser);
-            // isDisplay = !isDisplay;
             this.handleClick();
           }}
+          to="/user"
         >
           Log In
         </Link>

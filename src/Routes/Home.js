@@ -1,15 +1,12 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Row, Col } from "reactstrap";
 
-// const WelcomeBanner = React.lazy(() => import('../Components/WelcomeBanner'));
-const DisplayPosts = React.lazy(() => import('../Components/DisplayPosts'));
-const Leaderboard = React.lazy(() => import('../Components/Leaderboard'));
+const DisplayPosts = lazy(() => import("../Components/DisplayPosts"));
+const Leaderboard = lazy(() => import("../Components/Leaderboard"));
 
 const Home = (props) => {
   return (
     <div>
-      {/* <WelcomeBanner></WelcomeBanner> */}
-
       <Row className="justify-content-between pt-5">
         <Col id="left-col" xs="3"></Col>
 

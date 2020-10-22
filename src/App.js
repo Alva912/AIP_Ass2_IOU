@@ -2,27 +2,27 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 
-const Home = lazy(() => import("./Routes/Home.js"));
-const SignUp = lazy(() => import("./Routes/SignUp.js"));
-const LogIn = lazy(() => import("./Routes/LogIn.js"));
-const Main = lazy(() => import("./Routes/Main.js"));
+const Home = lazy(() => import("./Routes/Home"));
+const SignUp = lazy(() => import("./Routes/SignUp"));
+const LogIn = lazy(() => import("./Routes/LogIn"));
+const Main = lazy(() => import("./Routes/Main"));
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {
-        id: "",
-        name: "",
-        email: "",
-      },
+      currentUser: {},
     };
     this.onLogIn = this.onLogIn.bind(this);
   }
 
   onLogIn(data) {
-    // console.log(data);
+    console.log(data);
     this.setState({ currentUser: data });
+  }
+  onCreatePost(data) {
+    console.log(data);
+    // this.setState({ currentUser: data });
   }
 
   render() {
@@ -57,25 +57,15 @@ class App extends React.Component {
           </Navbar>
 
           <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
             <Route exact path="/">
               <Home></Home>
             </Route>
-            <Route
-              path="/signup"
-              // component={SignUp}
-              // props={(_user) => onLoggedIn(_user)}
-            >
+            <Route path="/signup">
               <SignUp func={this.onLogIn}></SignUp>
             </Route>
-            <Route
-              path="/login"
-              // component={LogIn}
-              // props={(_user) => onLoggedIn(_user)}
-            >
+            <Route path="/login">
               <LogIn func={this.onLogIn}></LogIn>
             </Route>
-            {/* <Route path="/user/:id" component={Main}/> */}
             <Route path="/user">
               <Main user={user}></Main>
             </Route>

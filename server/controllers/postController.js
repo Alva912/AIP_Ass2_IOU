@@ -81,7 +81,7 @@ exports.createPost_p = function (req, res, next) {
         {
             publisher_user: req.body.publisher_user,
             quest_type: req.body.quest_type,
-            quest_discription: req.body.quest_discription,
+            quest_description: req.body.quest_description,
             reward: req.body.reward,
             post_date: req.body.post_date,
             due_date: req.body.due_date,
