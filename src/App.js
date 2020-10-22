@@ -22,7 +22,7 @@ class App extends React.Component {
 
   onLogIn(data) {
     console.log(data);
-    this.setState({currentUser: data});
+    this.setState({ currentUser: data });
   }
 
   render() {
@@ -76,7 +76,7 @@ class App extends React.Component {
             </Route>
             {/* <Route path="/user/:id" component={Main}/> */}
             <Route path="/user/:id">
-              <Main></Main>
+              <Main user={this.state.currentUser}></Main>
             </Route>
           </Switch>
         </Suspense>

@@ -35,14 +35,18 @@ class UserSignUp extends Component {
     });
     let as_json = await response.json();
     // let as_user = as_json.user;
-    this.setState({
-      currentUser: {
-        id: as_json.user._id,
-        name: as_json.user.username,
-        email: as_json.user.email,
-      },
+    // this.setState({
+    //   currentUser: {
+    //     id: as_json.user._id,
+    //     name: as_json.user.username,
+    //     email: as_json.user.email,
+    //   },
+    // });
+    this.props.onLogIn({
+      id: as_json.user._id,
+      name: as_json.user.username,
+      email: as_json.user.email,
     });
-    this.props.onLogIn(this.state.currentUser);
   }
 
   handleChange(event, property) {
@@ -53,7 +57,8 @@ class UserSignUp extends Component {
 
   // ANCHOR Presentation
   render() {
-    // let _user = this.state.currentUser;
+    let uid = this.state.currentUser.id;
+    let path = "/user/:" + uid.toString();
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
@@ -93,11 +98,12 @@ class UserSignUp extends Component {
         </FormGroup>
 
         <Link
-          to="/signup"
+          to={path}
           className="btn btn-primary btn-lg btn-block"
           onClick={() => {
             // this.props.onLoggedIn(this.state.currentUser);
             // isDisplay = !isDisplay;
+            console.log(path);
             this.handleClick();
           }}
         >
