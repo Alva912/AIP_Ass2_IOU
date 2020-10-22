@@ -1,119 +1,88 @@
-// import React, { useState } from "react";
-import React, { useState, Suspense, lazy } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navbar, NavbarBrand } from "reactstrap";
-
-// NOTE Import custom components
-// import WelcomeBanner from "./Components/WelcomeBanner.js";
-// import UserMenu from "./Components/UserMenu.js";
-// import UserLogIn from "./Components/UserLogIn.js";
-// import UserSignUp from "./Components/UserSignUp.js";
-// import CreatePost from "./Components/CreatePost.js";
-// import DisplayPosts from "./Components/DisplayPosts.js";
-// import Leaderboard from "./Components/Leaderboard.js";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 
 const Home = lazy(() => import("./Routes/Home.js"));
 const SignUp = lazy(() => import("./Routes/SignUp.js"));
 const LogIn = lazy(() => import("./Routes/LogIn.js"));
 const Main = lazy(() => import("./Routes/Main.js"));
 
-const App = (props) => {
-  const [currentUser, setCurrentUser] = useState({});
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: {
+        id: "",
+        name: "",
+        email: "",
+      },
+    };
+    this.onLogIn = this.onLogIn.bind(this);
+  }
 
-  const onLoggedIn = (_user) => {
-    setCurrentUser({ id: _user.id, name: _user.name, email: _user.email });
-  };
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route
-          path="/signup"
-          component={SignUp}
-          props={(_user) => onLoggedIn(_user)}
-        />
-        <Route
-          path="/login"
-          component={LogIn}
-          props={(_user) => onLoggedIn(_user)}
-        />
-        <Route path="/user" component={Main} />
-      </Switch>
-    </Router>
-  );
-  // const [isVisitor, setIsVisitor] = useState(true);
-  // const [isSigningUp, setIsSigningUp] = useState(false);
-  // const [isLoggingIn, setIsLoggingIn] = useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [currentUser, setCurrentUser] = useState({});
+  onLogIn(data) {
+    console.log(data);
+    this.setState({currentUser: data});
+  }
 
-  // const onSigningUp = () => {
-  //   setIsVisitor(false);
-  //   setIsSigningUp(true);
-  //   setIsLoggingIn(false);
-  // };
+  render() {
+    return (
+      <Router>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar
+            color="dark"
+            dark
+            expand="sm"
+            fixed="top"
+            className="py-0 my-0"
+          >
+            <NavbarBrand href="/" className="p-0">
+              IOU Web App
+            </NavbarBrand>
+            {/* SECTION 测试React Router */}
+            <Nav className="ml-auto py-0 my-0" navbar>
+              <NavItem>
+                <Link to="/signup" className="btn btn-primary btn-sm m-1">
+                  SignUp
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link to="/login" className="btn btn-primary btn-sm m-1">
+                  LogIn
+                </Link>
+              </NavItem>
+            </Nav>
+            {/* !SECTION 测试React Router */}
+          </Navbar>
 
-  // const onLoggingIn = () => {
-  //   setIsVisitor(false);
-  //   setIsSigningUp(false);
-  //   setIsLoggingIn(true);
-  // };
-
-  // const onLoggedIn = (_user) => {
-  //   setIsSigningUp(false);
-  //   setIsLoggingIn(false);
-  //   setIsLoggedIn(true);
-  //   setCurrentUser({ id: _user.id, name: _user.name, email: _user.email });
-  // };
-
-  // return (
-  //   <div>
-  //     {/* NOTE Static navigation header */}
-
-  //     <Navbar color="dark" dark expand="sm" fixed="top">
-  //       <NavbarBrand href="/" className="p-0">
-  //         IOU Web App
-  //       </NavbarBrand>
-  //     </Navbar>
-
-  //     {/* NOTE Dynamic content */}
-
-  //     <WelcomeBanner
-  //       isDisplay={isVisitor}
-  //       onLoggingIn={onLoggingIn}
-  //       onSigningUp={onSigningUp}
-  //     ></WelcomeBanner>
-
-  //     <Row className="justify-content-between">
-  //       <Col id="left-col" xs="3">
-  //         <UserMenu
-  //           isDisplay={isLoggedIn}
-  //           userName={currentUser.name}
-  //           userId={currentUser.id}
-  //         ></UserMenu>
-  //       </Col>
-
-  //       <Col id="middle-col" xs="auto">
-  //         {" "}
-  //         <UserLogIn
-  //           isDisplay={!isLoggedIn && isLoggingIn}
-  //           onLoggedIn={(_user) => onLoggedIn(_user)}
-  //         ></UserLogIn>
-  //         <UserSignUp
-  //           isDisplay={!isLoggedIn && isSigningUp}
-  //           onLoggedIn={(_user) => onLoggedIn(_user)}
-  //         ></UserSignUp>
-  //         <CreatePost isDisplay={isLoggedIn}></CreatePost>
-  //         {/* TODO Change according to user menu option selected */}
-  //         <DisplayPosts isDisplay={isVisitor || isLoggedIn}></DisplayPosts>
-  //       </Col>
-
-  //       <Col id="right-col" xs="3">
-  //         <Leaderboard isDisplay={isVisitor || isLoggedIn}></Leaderboard>
-  //       </Col>
-  //     </Row>
-  //   </div>
-  // );
-};
+          <Switch>
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route
+              path="/signup"
+              // component={SignUp}
+              // props={(_user) => onLoggedIn(_user)}
+            >
+              <SignUp func={this.onLogIn}></SignUp>
+            </Route>
+            <Route
+              path="/login"
+              // component={LogIn}
+              // props={(_user) => onLoggedIn(_user)}
+            >
+              <LogIn func={this.onLogIn}></LogIn>
+            </Route>
+            {/* <Route path="/user/:id" component={Main}/> */}
+            <Route path="/user/:id">
+              <Main></Main>
+            </Route>
+          </Switch>
+        </Suspense>
+      </Router>
+    );
+  }
+}
 
 export default App;

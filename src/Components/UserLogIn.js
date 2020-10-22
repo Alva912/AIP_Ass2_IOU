@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 
 class UserLogIn extends Component {
   constructor(props) {
@@ -84,18 +85,17 @@ class UserLogIn extends Component {
             onChange={(event) => this.handleChange(event, "password")}
           ></Input>
         </FormGroup>
-        <Button
-          color="primary"
-          size="lg"
-          block
+        <Link
+          to="/user/"
+          className="btn btn-primary btn-lg btn-block"
           onClick={() => {
-            this.handleClick();
             // this.props.onLoggedIn(this.state.currentUser);
             // isDisplay = !isDisplay;
+            this.handleClick();
           }}
         >
           Log In
-        </Button>
+        </Link>
       </Form>
     );
   }

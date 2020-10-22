@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 
 class UserSignUp extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class UserSignUp extends Component {
         email: as_json.user.email,
       },
     });
+    this.props.onLogIn(this.state.currentUser);
   }
 
   handleChange(event, property) {
@@ -51,11 +53,7 @@ class UserSignUp extends Component {
 
   // ANCHOR Presentation
   render() {
-    // let isDisplay = this.props.isDisplay;
     // let _user = this.state.currentUser;
-    // if (!isDisplay) {
-    //   return null;
-    // }
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
@@ -94,10 +92,9 @@ class UserSignUp extends Component {
           ></Input>
         </FormGroup>
 
-        <Button
-          color="primary"
-          size="lg"
-          block
+        <Link
+          to="/signup"
+          className="btn btn-primary btn-lg btn-block"
           onClick={() => {
             // this.props.onLoggedIn(this.state.currentUser);
             // isDisplay = !isDisplay;
@@ -105,7 +102,7 @@ class UserSignUp extends Component {
           }}
         >
           Sign Up
-        </Button>
+        </Link>
       </Form>
     );
   }

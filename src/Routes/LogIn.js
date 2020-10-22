@@ -5,7 +5,7 @@ import UserLogIn from "../Components/UserLogIn.js";
 
 const LogIn = (props) => {
   return (
-    <Row className="justify-content-between">
+    <Row className="justify-content-between pt-5">
       <Col id="left-col" xs="3"></Col>
 
       <Col id="middle-col" xs="auto">
