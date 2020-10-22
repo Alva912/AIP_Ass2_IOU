@@ -90,30 +90,50 @@ exports.createUser_p = function (req, res, next) {
 };
 
 //User login 
+// exports.login_p = function (req, res) {
+//     const info = User.findOne({
+//         email: req.body.email
+//     });
+//     if (!info) {
+//         res.status(403).end()
+//     } else {
+//         const isPasswordValid = require('bcrypt').compareSync(
+//             req.body.password,
+//             user.password
+//         );
+//         if (!isPasswordValid) {
+//             return res.status(422).send({
+//               message: 'The password is invalid'
+//             })
+//         } else {
+//             const user = User.findOne({
+//                 email: req.body.email
+//             })
+//             res.status(201).json({
+//                 success: true,
+//                 user
+//             });
+//         }
+//     }   
+// };
+
+// User login
 exports.login_p = function (req, res) {
-    const user = User.findOne({
-        username: req.body.username
-    });
-    if (!user) {
-        return res.status(422).send({
-            message:'user not exist'
-        })
-    };
-    const isPasswordValid = require('bcrypt').compareSync(
-        req.body.password,
-        user.password
-    );
-    if (!isPasswordValid) {
-        return res.status(422).send({
-          message: 'The password is invalid'
-        })
-      } else {
-        res.status(201).json({
-            success: true,
-            user
-        });
-      }
+    User.findOne({'email': req.body.email}, (err, user)=>{
+        if (!user) res.json({message: 'Login failed, user not found'})
+        user.comparePassword(req.body.password, (err, isMatch)=>{
+            if(err) throw err;
+            if(!isMatch) return res.status(400).json({
+                message:'Wrong Password'
+            });
+            res.status(201).json({
+                success: true,
+                user
+            })
+        })  
+    })
 };
+
 
 
 // Display User delete form on GET.
