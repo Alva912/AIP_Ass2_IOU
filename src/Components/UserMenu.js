@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
 
 class MenuItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     let itemName = this.props.itemName;
-    // let id = this.props.id;
+    let itemId = this.props.itemId;
     return (
       <NavItem>
         <NavLink href="/user/:id" className="text-dark">
@@ -31,16 +36,16 @@ class MenuItem extends Component {
 }
 class UserMenu extends Component {
   render() {
-    let isDisplay = this.props.isDisplay;
+    // let isDisplay = this.props.isDisplay;
     let userId = this.props.userId;
     let userName = this.props.userName;
-    if (!isDisplay) {
+    if (userId == null) {
       return null;
     }
     return (
       <div id="user-menu" className="sidebar-sticky sticky-top pt-5">
         <Nav className="flex-column">
-          <MenuItem itemName={userName} id={userId}></MenuItem>
+          <MenuItem itemName={userName} itemId={userId}></MenuItem>
           <MenuItem itemName="Favor - U owe to Others"></MenuItem>
           <MenuItem itemName="Favor - Others owe U"></MenuItem>
           <MenuItem itemName="My Quests"></MenuItem>

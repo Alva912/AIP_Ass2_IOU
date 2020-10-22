@@ -21,11 +21,12 @@ class App extends React.Component {
   }
 
   onLogIn(data) {
-    console.log(data);
+    // console.log(data);
     this.setState({ currentUser: data });
   }
 
   render() {
+    let user = this.state.currentUser;
     return (
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
@@ -75,8 +76,8 @@ class App extends React.Component {
               <LogIn func={this.onLogIn}></LogIn>
             </Route>
             {/* <Route path="/user/:id" component={Main}/> */}
-            <Route path="/user/:id">
-              <Main user={this.state.currentUser}></Main>
+            <Route path="/user">
+              <Main user={user}></Main>
             </Route>
           </Switch>
         </Suspense>

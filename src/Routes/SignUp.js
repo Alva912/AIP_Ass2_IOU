@@ -5,12 +5,6 @@ import { Row, Col } from "reactstrap";
 import UserSignUp from "../Components/UserSignUp.js";
 
 const SignUp = (props) => {
-  const [currentUser, setCurrentUser] = useState({
-    id: "",
-    name: "",
-    email: "",
-  });
-
   return (
     <Row className="justify-content-between pt-5">
       <Col id="left-col" xs="3"></Col>

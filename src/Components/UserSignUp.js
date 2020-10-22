@@ -98,7 +98,7 @@ class UserSignUp extends Component {
         </FormGroup>
 
         <Link
-          to={path}
+          to="/user"
           className="btn btn-primary btn-lg btn-block"
           onClick={() => {
             // this.props.onLoggedIn(this.state.currentUser);
