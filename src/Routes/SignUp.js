@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { lazy } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "reactstrap";
 
-import UserSignUp from "../Components/UserSignUp.js";
+const UserSignUp = lazy(() => import("../Components/UserSignUp"));
 
 const SignUp = (props) => {
   return (
@@ -10,9 +10,7 @@ const SignUp = (props) => {
       <Col id="left-col" xs="3"></Col>
 
       <Col id="middle-col" xs="auto">
-        <UserSignUp
-          onLogIn={props.func}
-        ></UserSignUp>
+        <UserSignUp onLogIn={props.func}></UserSignUp>
         <Link to="/login">Already have an account?</Link>
       </Col>
 

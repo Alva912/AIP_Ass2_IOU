@@ -1,7 +1,7 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Row, Col } from "reactstrap";
 
-import UserLogIn from "../Components/UserLogIn.js";
+const UserLogIn = lazy(() => import("../Components/UserLogIn"));
 
 const LogIn = (props) => {
   return (
@@ -9,9 +9,7 @@ const LogIn = (props) => {
       <Col id="left-col" xs="3"></Col>
 
       <Col id="middle-col" xs="auto">
-        <UserLogIn
-        // onLoggedIn={(_user) => props.onLoggedIn(_user)}
-        ></UserLogIn>
+        <UserLogIn onLogIn={props.func}></UserLogIn>
       </Col>
 
       <Col id="right-col" xs="3"></Col>

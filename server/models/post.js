@@ -7,7 +7,7 @@ var PostSchema = new Schema(
   {
     publisher_user: {type: Schema.Types.ObjectId, ref: 'User', require: true},
     quest_type: {type: String, require: true, enum: ['Cleaning', 'Snacking'], default: 'Cleaning'},
-    quest_discription: {type: String, required: true, maxlength: 300, minlength: 2},
+    quest_description: {type: String, required: true, maxlength: 300, minlength: 2},
     reward: {type: Schema.Types.ObjectId, ref: 'Reward', require: true},
     post_date: {type: Date, default: Date.now},
     due_date: {type: Date, default: Date.now},

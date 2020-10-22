@@ -11,11 +11,11 @@ class UserSignUp extends Component {
         email: "",
         password: "",
       },
-      currentUser: {
-        id: "",
-        name: "",
-        email: "",
-      },
+      // currentUser: {
+      //   id: "",
+      //   name: "",
+      //   email: "",
+      // },
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +34,6 @@ class UserSignUp extends Component {
       body: JSON.stringify(data),
     });
     let as_json = await response.json();
-    // let as_user = as_json.user;
     // this.setState({
     //   currentUser: {
     //     id: as_json.user._id,
@@ -57,13 +56,13 @@ class UserSignUp extends Component {
 
   // ANCHOR Presentation
   render() {
-    let uid = this.state.currentUser.id;
-    let path = "/user/:" + uid.toString();
     return (
       <Form className="mt-5">
         <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
         <FormGroup>
-          <Label for="username">User Name</Label>
+          <Label for="username" className="sr-only">
+            User Name
+          </Label>
           <Input
             type="text"
             id="username"
@@ -75,7 +74,9 @@ class UserSignUp extends Component {
           ></Input>
         </FormGroup>
         <FormGroup>
-          <Label for="email">Email</Label>
+          <Label for="email" className="sr-only">
+            Email
+          </Label>
           <Input
             type="email"
             id="email"
@@ -86,7 +87,9 @@ class UserSignUp extends Component {
           ></Input>
         </FormGroup>
         <FormGroup>
-          <Label for="password">Password</Label>
+          <Label for="password" className="sr-only">
+            Password
+          </Label>
           <Input
             type="password"
             id="password"
@@ -98,14 +101,11 @@ class UserSignUp extends Component {
         </FormGroup>
 
         <Link
-          to="/user"
           className="btn btn-primary btn-lg btn-block"
           onClick={() => {
-            // this.props.onLoggedIn(this.state.currentUser);
-            // isDisplay = !isDisplay;
-            console.log(path);
             this.handleClick();
           }}
+          to="/user"
         >
           Sign Up
         </Link>
