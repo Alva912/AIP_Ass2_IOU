@@ -11,10 +11,10 @@ import {
 
 class CreatePost extends Component {
   render() {
-    let isDisplay = this.props.isDisplay;
-    if (!isDisplay) {
-      return null;
-    }
+    // let isDisplay = this.props.isDisplay;
+    // if (!isDisplay) {
+    //   return null;
+    // }
     return (
       <Card id="create-post" className="my-3 mt-5">
         <Form id="post-form" className="card-body d-flex flex-column">
