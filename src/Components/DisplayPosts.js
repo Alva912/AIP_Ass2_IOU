@@ -3,8 +3,8 @@ import { Navbar, NavbarBrand, Form, Input, Media } from "reactstrap";
 
 class Post extends Component {
   render() {
-    let id = this.props.post.id;
-    let content = this.props.post.content;
+    let id = this.props.key;
+    let post = this.props.content;
     return (
       <Media className="text-muted pt-3" id={id}>
         <svg
@@ -28,10 +28,10 @@ class Post extends Component {
           className="pb-3 mb-0 small lh-125 border-bottom border-gray"
         >
           <strong className="d-block text-gray-dark">
-            {content.publisher_user}
-            <small> {content.due_date}</small>
+            {post.publisher_user}
+            <small> {post.due_date}</small>
           </strong>
-          {content.quest_discription}
+          {post.quest_discription}
         </Media>
       </Media>
     );
@@ -84,20 +84,8 @@ class DisplayPosts extends Component {
             </Form>
           </Navbar>
           {posts.map((post) => (
-            <Post id={post._id} content={post}></Post>
+            <Post key={post._id} content={post}></Post>
           ))}
-          {/* <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post> */}
         </div>
       );
     }
