@@ -29,12 +29,12 @@ exports.getUserById = function (req, res, next) {
             User.findById(req.params.id)
                 .exec(callback)
         },
-        user_owe_other: function(callback) {
-            Reward.find({'provider_user':req.params.id }, 'reward_type reward_quantity post_id')
+        user_owe_other: function (callback) {
+            Reward.find({ 'provider_user': req.params.id }, 'reward_type reward_quantity post_id')
                 .exec(callback)
         },
-        other_owe_user: function(callback) {
-            Reward.find({'acceptant_user':req.params.id}, 'reward_type reward_quantity post_id')
+        other_owe_user: function (callback) {
+            Reward.find({ 'acceptant_user': req.params.id }, 'reward_type reward_quantity post_id')
                 .exec(callback)
         },
     }, function (err, results) {
@@ -91,28 +91,26 @@ exports.createUser_p = function (req, res, next) {
 };
 // User login
 exports.login_p = function (req, res, next) {
-    
-  const username = req.body.username;
-  const password = req.body.password;
-    
-  console.log("User Name: ", username, "Password: ", password);
 
-  User.findOne({ username: username })
-    .then((user) => {
-      if (user) {        
-        return res.status(201).json({
-            success: true,
-            user
+    const username = req.body.username;
+    const password = req.body.password;
+    console.log("User Name: ", username, "Password: ", password);
+    User.findOne({ username: username })
+        .then((user) => {
+            if (user) {
+                return res.status(201).json({
+                    success: true,
+                    user
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.json({
+                message: err,
+                error: true,
+            });
         });
-      }  
-    })
-    .catch((err) => {
-      console.log(err);
-      return res.json({
-        message: err,
-        error: true,
-      });
-    }); 
 };
 
 // // User login
@@ -132,15 +130,13 @@ exports.login_p = function (req, res, next) {
 //     })
 // };
 
-
-
 // Display User delete form on GET.
-exports.deleteUser_g = function(req, res) {
+exports.deleteUser_g = function (req, res) {
     res.send('NOT IMPLEMENTED: user delete GET');
 };
 
 // Handle user delete on POST.
-exports.deleteUser_p = function(req, res) {
+exports.deleteUser_p = function (req, res) {
     res.send('NOT IMPLEMENTED: user delete POST');
 };
 
@@ -193,6 +189,6 @@ exports.updateUser_p = function (req, res, next) {
     }
 }
 
-  
+
 
 
